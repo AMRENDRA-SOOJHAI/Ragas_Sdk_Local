@@ -130,3 +130,4 @@ def run_ragas():
 # if __name__ == "__main__":
 #     rag = build_rag_chain()
 #     print(rag["rag_chain"].invoke("What is Artificial Intelligence?"))
+

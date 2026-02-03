@@ -15,6 +15,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
+# from langfuse.openai import OpenAI
+
 api_key = os.environ["OPENAI_API_KEY"]
 
 # RAG PIPELINE
@@ -29,6 +31,8 @@ def build_rag_chain():
     )
     chunks = text_splitter.split_documents(documents)
 
+    # embeddings = llm.embeddings()
+
     embeddings = OpenAIEmbeddings()
     vector_db = FAISS.from_documents(chunks, embeddings)
     retriever = vector_db.as_retriever()
@@ -37,6 +41,8 @@ def build_rag_chain():
         model="gpt-4o",
         api_key=api_key
     )
+
+    # llm = OpenAI(api_key=api_key)
 
     template = """
     You are an assistant for question answering tasks.
